@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Automation | AI, Automation, Websites & Digital Growth</title>
+    <meta name="description" content="Neural Automation builds websites, applications, AI/ML solutions, automation systems and digital growth strategies for modern businesses.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+            ROOT VARIABLES & RESET (BLACK, BLUE, RED THEME)
+            ========================================================================== */
+        :root {
+            --bg-deep: #000000;
+            --bg-glass: rgba(10, 10, 15, 0.7);
+            --bg-glass-hover: rgba(20, 20, 30, 0.9);
+            
+            --color-red: #ff0033;
+            --color-blue: #0044ff;
+            --color-white: #ffffff;
+            --color-muted: #8b9bb4;
+            --color-dark: #050505;
+            
+            --glow-red: 0 0 25px rgba(255, 0, 51, 0.6);
+            --glow-blue: 0 0 35px rgba(0, 68, 255, 0.6);
+            --glow-mixed: 0 0 20px rgba(255, 0, 51, 0.4), 0 0 40px rgba(0, 68, 255, 0.3);
+            
+            --font-heading: 'Orbitron', sans-serif;
+            --font-body: 'Rajdhani', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            
+            --transition-fast: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --transition-slow: 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--color-white);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ==========================================================================
+            ADVANCED VISUAL EFFECTS (MOIRÉ, GRIDS, PARTICLES)
+            ========================================================================== */
+        .fixed-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -3;
+            background: radial-gradient(circle at 50% 50%, #080812 0%, var(--bg-deep) 100%);
+        }
+
+        /* High-tech Moiré Effect & Grid */
+        .moire-grid {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -2;
+            background-image: 
+                repeating-linear-gradient(45deg, rgba(255,0,51,0.03) 0, rgba(255,0,51,0.03) 1px, transparent 1px, transparent 6px),
+                repeating-linear-gradient(-45deg, rgba(0,68,255,0.03) 0, rgba(0,68,255,0.03) 1px, transparent 1px, transparent 6px);
+            opacity: 0.8;
+            pointer-events: none;
+            animation: moirePulse 8s ease-in-out infinite alternate;
+        }
+
+        .perspective-grid {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            background-image: 
+                linear-gradient(to right, rgba(0, 68, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 0, 51, 0.05) 1px, transparent 1px);
+            background-size: 80px 80px;
+            transform: perspective(600px) rotateX(60deg) translateY(-100px) scale(3.5);
+            animation: gridMove 15s linear infinite;
+            pointer-events: none;
+        }
+
+        .scanning-line {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--color-red), var(--color-blue), transparent);
+            box-shadow: var(--glow-red), var(--glow-blue);
+            opacity: 0.3;
+            z-index: 999;
+            pointer-events: none;
+            animation: scan 6s linear infinite;
+        }
+
+        .ambient-light {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.25;
+            z-index: -2;
+            pointer-events: none;
+            animation: pulseLight 12s ease-in-out infinite alternate;
+        }
+        .light-red { top: -10%; left: -10%; width: 600px; height: 600px; background: var(--color-red); }
+        .light-blue { bottom: -10%; right: -10%; width: 700px; height: 700px; background: var(--color-blue); animation-delay: -6s; }
+
+        /* Floating Tech Elements */
+        .floating-element {
+            position: absolute;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,0,51,0.2);
+            backdrop-filter: blur(5px);
+            z-index: 0;
+            pointer-events: none;
+            animation: floatComplex 10s ease-in-out infinite;
+        }
+        .fe-1 { width: 120px; height: 120px; top: 15%; left: 5%; border-radius: 50%; border-color: rgba(0,68,255,0.3); animation-delay: 0s; }
+        .fe-2 { width: 80px; height: 80px; top: 60%; right: 10%; transform: rotate(45deg); border-color: rgba(255,0,51,0.3); animation-delay: -3s; }
+        .fe-3 { width: 200px; height: 2px; top: 30%; right: -5%; background: linear-gradient(90deg, transparent, var(--color-red)); animation: slideLeft 8s linear infinite; }
+
+        /* Animations */
+        @keyframes gridMove {
+            0% { transform: perspective(600px) rotateX(60deg) translateY(0) scale(3.5); }
+            100% { transform: perspective(600px) rotateX(60deg) translateY(80px) scale(3.5); }
+        }
+        @keyframes scan { 0% { top: -10%; opacity: 0; } 10% { opacity: 0.5; } 90% { opacity: 0.5; } 100% { top: 110%; opacity: 0; } }
+        @keyframes pulseLight { 0% { transform: scale(0.8) translate(0, 0); opacity: 0.15; } 100% { transform: scale(1.2) translate(50px, 50px); opacity: 0.35; } }
+        @keyframes floatComplex {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(15deg); }
+        }
+        @keyframes slideLeft { 0% { transform: translateX(100%); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateX(-200%); opacity: 0; } }
+        @keyframes circuitFlow { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+        @keyframes moirePulse { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+
+        /* Scroll Reveal (CSS Only) */
+        @supports (animation-timeline: view()) {
+            .reveal {
+                animation: revealBlock both;
+                animation-timeline: view();
+                animation-range: entry 5% cover 20%;
+            }
+        }
+        @keyframes revealBlock {
+            from { opacity: 0; transform: translateY(60px) scale(0.95); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+
+        /* ==========================================================================
+            TYPOGRAPHY & UTILITIES
+            ========================================================================== */
+        h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 2px; }
+        .text-red { color: var(--color-red); text-shadow: var(--glow-red); }
+        .text-blue { color: var(--color-blue); text-shadow: var(--glow-blue); }
+        .text-gradient {
+            background: linear-gradient(90deg, var(--color-red), var(--color-white), var(--color-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: circuitFlow 5s linear infinite;
+        }
+        
+        .mono-label {
+            font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 3px;
+            color: var(--color-white); text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.05); padding: 5px 12px; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px;
+        }
+        .mono-label::before {
+            content: ''; display: inline-block; width: 8px; height: 8px;
+            background-color: var(--color-red); border-radius: 50%; box-shadow: var(--glow-red);
+            animation: blink 1.5s infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(0.8); } }
+
+        .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 5%; }
+        .section-padding { padding: 9rem 0; }
+        
+        .glass-panel {
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 68, 255, 0.15);
+            border-radius: 8px; position: relative; overflow: hidden;
+            transition: var(--transition-slow);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .glass-panel::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(255,0,51,0.05) 0%, transparent 50%, rgba(0,68,255,0.05) 100%);
+            z-index: -1;
+        }
+        .glass-panel:hover {
+            border-color: rgba(255, 0, 51, 0.4);
+            box-shadow: var(--glow-mixed), 0 20px 40px rgba(0,0,0,0.8);
+            transform: translateY(-8px) scale(1.02);
+            background: var(--bg-glass-hover);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 1.2rem 2.5rem; font-family: var(--font-heading); font-size: 0.95rem; font-weight: 700;
+            text-decoration: none; text-transform: uppercase; letter-spacing: 2px;
+            position: relative; cursor: pointer; border: none; background: transparent;
+            color: var(--color-white); transition: var(--transition-fast); z-index: 1; overflow: hidden;
+            border-radius: 4px;
+        }
+        .btn-primary {
+            background: rgba(255, 0, 51, 0.1);
+            border: 1px solid var(--color-red);
+            box-shadow: 0 0 20px rgba(255, 0, 51, 0.2) inset;
+        }
+        .btn-primary::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 51, 0.5), transparent);
+            transition: var(--transition-slow); z-index: -1;
+        }
+        .btn-primary:hover::before { left: 100%; }
+        .btn-primary:hover { box-shadow: var(--glow-red); text-shadow: 0 0 8px var(--color-white); background: rgba(255,0,51,0.2); }
+        
+        .btn-secondary {
+            background: rgba(0, 68, 255, 0.1);
+            border: 1px solid var(--color-blue);
+            box-shadow: 0 0 20px rgba(0, 68, 255, 0.2) inset;
+        }
+        .btn-secondary::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 68, 255, 0.5), transparent);
+            transition: var(--transition-slow); z-index: -1;
+        }
+        .btn-secondary:hover::before { left: 100%; }
+        .btn-secondary:hover { box-shadow: var(--glow-blue); text-shadow: 0 0 8px var(--color-white); background: rgba(0,68,255,0.2); }
+
+        /* ==========================================================================
+            NAVIGATION
+            ========================================================================== */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0,0,0,0));
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 0, 51, 0.15);
+            z-index: 1000; padding: 1rem 0; transition: var(--transition-fast);
+        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo {
+            display: flex; align-items: center; gap: 20px;
+            text-decoration: none; color: var(--color-white);
+            font-family: var(--font-heading); font-weight: 900; font-size: 1.5rem; letter-spacing: 3px;
+            position: relative;
+        }
+        /* ENLARGED LOGO */
+        .logo img {
+            width: 90px; height: 90px; object-fit: contain;
+            filter: drop-shadow(0 0 15px rgba(255, 0, 51, 0.8)) drop-shadow(0 0 30px rgba(0, 68, 255, 0.6));
+            transition: var(--transition-slow);
+            border-radius: 8px;
+        }
+        .logo:hover img { transform: scale(1.1) rotate(5deg); filter: drop-shadow(0 0 25px rgba(255, 0, 51, 1)); }
+        .logo span { display: flex; flex-direction: column; line-height: 1; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+        .logo span small { font-size: 0.7rem; color: var(--color-red); letter-spacing: 6px; margin-top: 4px; }
+
+        .nav-menu { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+        .nav-menu a {
+            color: var(--color-muted); text-decoration: none; font-family: var(--font-mono);
+            font-size: 0.9rem; text-transform: uppercase; transition: var(--transition-fast);
+            position: relative; padding: 0.5rem 0;
+        }
+        .nav-menu a::before {
+            content: ''; position: absolute; top: 0; left: 50%; width: 0; height: 100%;
+            background: rgba(0, 68, 255, 0.1); transition: var(--transition-fast); transform: translateX(-50%); z-index: -1;
+            border-radius: 4px;
+        }
+        .nav-menu a::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+            background: linear-gradient(90deg, var(--color-red), var(--color-blue));
+            transition: var(--transition-fast); box-shadow: var(--glow-red);
+        }
+        .nav-menu a:hover { color: var(--color-white); text-shadow: 0 0 8px var(--color-white); }
+        .nav-menu a:hover::before { width: 100%; padding: 0 10px; }
+        .nav-menu a:hover::after { width: 100%; }
+
+        .mobile-toggle-btn { display: none; cursor: pointer; color: var(--color-white); font-size: 2rem; text-shadow: var(--glow-red); }
+        #mobile-menu-checkbox { display: none; }
+
+        /* ==========================================================================
+            HERO SECTION
+            ========================================================================== */
+        .hero {
+            position: relative; min-height: 100vh; display: flex; align-items: center;
+            padding-top: 120px; overflow: hidden;
+        }
+        .hero-content { max-width: 950px; position: relative; z-index: 10; }
+        .hero h1 {
+            font-size: clamp(3.5rem, 8vw, 7rem); line-height: 1.05; margin: 1.5rem 0; font-weight: 900;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        .hero p {
+            font-size: clamp(1.2rem, 2vw, 1.5rem); color: var(--color-muted); max-width: 750px;
+            margin-bottom: 3rem; font-family: var(--font-mono); line-height: 1.7;
+        }
+        .hero-ctas { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; margin-bottom: 5rem; }
+        
+        .credibility-strip {
+            display: flex; gap: 1.5rem; align-items: center; font-family: var(--font-mono);
+            font-size: 0.9rem; color: var(--color-white); flex-wrap: wrap;
+            border-top: 1px solid rgba(255, 0, 51, 0.2); padding-top: 1.5rem;
+            background: linear-gradient(90deg, rgba(0,0,0,0.8), transparent);
+            padding: 1.5rem; border-radius: 8px;
+        }
+        .credibility-strip span { display: flex; align-items: center; gap: 0.5rem; text-shadow: 0 0 5px rgba(0,68,255,0.5); }
+        .credibility-strip span::before { content: '•'; color: var(--color-red); text-shadow: var(--glow-red); font-size: 1.5rem; line-height: 0; }
+        
+        /* Floating Geometric Core */
+        .hero-graphic {
+            position: absolute; right: 2%; top: 50%; transform: translateY(-50%);
+            width: 600px; height: 600px; z-index: 1; pointer-events: none; opacity: 0.8;
+        }
+        .cyber-core {
+            position: relative; width: 100%; height: 100%;
+            animation: floatComplex 12s infinite;
+        }
+        .ring {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            border-radius: 50%; border: 1px solid rgba(255,255,255,0.1);
+        }
+        .ring-1 { width: 300px; height: 300px; border-top-color: var(--color-red); animation: spin 10s linear infinite; box-shadow: inset 0 0 20px rgba(255,0,51,0.1); }
+        .ring-2 { width: 450px; height: 450px; border-right-color: var(--color-blue); animation: spin 15s linear infinite reverse; box-shadow: 0 0 30px rgba(0,68,255,0.1); }
+        .ring-3 { width: 550px; height: 550px; border: 2px dashed rgba(255,0,51,0.2); animation: spin 25s linear infinite; }
+        
+        .core-node {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 60px; height: 60px; background: var(--color-red); border-radius: 50%;
+            box-shadow: var(--glow-red), 0 0 50px var(--color-red); animation: pulseLight 2s infinite alternate;
+        }
+        .orbit-node {
+            position: absolute; width: 15px; height: 15px; background: var(--color-blue); border-radius: 50%;
+            box-shadow: var(--glow-blue); top: 0; left: 50%; transform: translate(-50%, -50%);
+        }
+
+        @keyframes spin { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+
+        /* ==========================================================================
+            CAPABILITIES SECTION
+            ========================================================================== */
+        .section-header { text-align: center; margin-bottom: 5rem; position: relative; z-index: 2; }
+        .section-header h2 { font-size: clamp(2.5rem, 4vw, 3.5rem); margin-top: 1.5rem; text-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        
+        .capabilities-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; position: relative; z-index: 2;
+        }
+        .cap-card { padding: 3rem 2.5rem; }
+        .cap-num {
+            font-family: var(--font-heading); font-size: 4rem; font-weight: 900;
+            color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+            margin-bottom: 1.5rem; line-height: 1; transition: var(--transition-slow);
+            position: absolute; top: 20px; right: 20px; opacity: 0.5;
+        }
+        .cap-card:hover .cap-num {
+            -webkit-text-stroke: 1px var(--color-red); color: rgba(255,0,51,0.1);
+            text-shadow: var(--glow-red); transform: scale(1.1) translate(-10px, 10px); opacity: 1;
+        }
+        .cap-card h3 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--color-white); display: flex; align-items: center; gap: 15px; }
+        .cap-card h3::before { content: ''; width: 12px; height: 12px; background: var(--color-blue); display: block; box-shadow: var(--glow-blue); }
+        .cap-card p { color: var(--color-muted); font-size: 1.1rem; }
+        .cap-card::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 3px;
+            background: linear-gradient(90deg, var(--color-blue), var(--color-red)); transition: var(--transition-slow);
+        }
+        .cap-card:hover::after { width: 100%; box-shadow: var(--glow-mixed); }
+
+        /* ==========================================================================
+            WHY NEURAL AUTOMATION (PIPELINE)
+            ========================================================================== */
+        .pipeline-container { margin-top: 5rem; position: relative; }
+        .pipeline-track {
+            display: flex; justify-content: space-between; align-items: center; position: relative;
+            background: rgba(10,10,15,0.8); padding: 5rem 3rem; border-radius: 12px;
+            border: 1px solid rgba(255,0,51,0.2); box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+        }
+        .pipeline-track::before {
+            content: ''; position: absolute; top: 50%; left: 5%; width: 90%; height: 2px;
+            background: rgba(255,255,255,0.05); transform: translateY(-50%); z-index: 0;
+        }
+        .pipeline-track::after {
+            content: ''; position: absolute; top: 50%; left: 5%; width: 90%; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--color-red), var(--color-blue), transparent);
+            transform: translateY(-50%); z-index: 0; background-size: 200%;
+            animation: circuitFlow 3s linear infinite; box-shadow: var(--glow-mixed);
+        }
+        .stage { position: relative; z-index: 1; text-align: center; width: 220px; transition: var(--transition-fast); }
+        .stage:hover { transform: translateY(-15px); }
+        .stage-icon {
+            width: 90px; height: 90px; margin: 0 auto 2rem;
+            background: var(--bg-deep); border: 2px solid var(--color-blue);
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 20px rgba(0, 68, 255, 0.2) inset, var(--glow-blue);
+            font-family: var(--font-heading); font-size: 2rem; font-weight: 900; color: var(--color-white);
+            transform: rotate(45deg); transition: var(--transition-slow);
+        }
+        .stage-icon span { transform: rotate(-45deg); }
+        .stage:hover .stage-icon { border-color: var(--color-red); box-shadow: 0 0 30px rgba(255,0,51,0.4) inset, var(--glow-red); transform: rotate(135deg); }
+        .stage:hover .stage-icon span { transform: rotate(-135deg); color: var(--color-red); }
+        
+        .stage h4 { margin-bottom: 1rem; font-size: 1.4rem; letter-spacing: 3px; }
+        .stage p { font-size: 1rem; color: var(--color-muted); line-height: 1.5; font-family: var(--font-mono); }
+
+        /* ==========================================================================
+            FOUNDER SECTION
+            ========================================================================== */
+        .founder-wrapper { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: center; position: relative; }
+        .founder-info h3 { font-size: 3rem; margin: 1.5rem 0 2.5rem; color: var(--color-white); text-shadow: 0 0 10px rgba(255,255,255,0.2); }
+        .founder-info p { margin-bottom: 2rem; font-size: 1.2rem; color: #b0c0d0; }
+        
+        .cert-grid { display: grid; gap: 2rem; position: relative; z-index: 2; }
+        .cert-card {
+            display: flex; align-items: center; gap: 2rem; padding: 2rem;
+            border-left: 4px solid var(--color-red); background: linear-gradient(90deg, rgba(255,0,51,0.05), rgba(0,0,0,0.5));
+            transition: var(--transition-fast); border-radius: 0 8px 8px 0;
+        }
+        .cert-card:hover { transform: translateX(15px); border-left-color: var(--color-blue); background: linear-gradient(90deg, rgba(0,68,255,0.1), rgba(0,0,0,0.8)); box-shadow: 10px 10px 30px rgba(0,0,0,0.5); }
+        .cert-icon {
+            width: 60px; height: 60px; background: rgba(255,255,255,0.05); border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.1);
+            font-family: var(--font-heading); font-weight: 900; font-size: 1.5rem; color: var(--color-white);
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+        .cert-card:hover .cert-icon { border-color: var(--color-blue); color: var(--color-blue); text-shadow: var(--glow-blue); }
+
+        /* ==========================================================================
+            RESULTS & SOCIAL GROWTH
+            ========================================================================== */
+        .stats-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin: 5rem 0; }
+        .stat-box { text-align: center; padding: 4rem 2rem; position: relative; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+        .stat-box::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at top, rgba(255,0,51,0.15), transparent 70%); pointer-events: none;
+        }
+        .stat-box:nth-child(2)::before { background: radial-gradient(circle at top, rgba(0,68,255,0.15), transparent 70%); }
+        .stat-number {
+            font-family: var(--font-heading); font-size: clamp(3.5rem, 6vw, 5.5rem); font-weight: 900;
+            color: var(--color-white); text-shadow: var(--glow-red); margin-bottom: 1rem; line-height: 1;
+        }
+        .stat-box:nth-child(2) .stat-number { text-shadow: var(--glow-blue); }
+        .stat-label { font-family: var(--font-mono); font-size: 1.1rem; color: var(--color-white); letter-spacing: 3px; font-weight: 700; }
+        .stat-desc { font-size: 1rem; color: var(--color-muted); margin-top: 1rem; text-transform: uppercase; }
+
+        .growth-flow {
+            display: flex; flex-direction: column; gap: 1.5rem; max-width: 700px; margin: 0 auto;
+            border-left: 2px dashed rgba(255,0,51,0.3); padding-left: 3rem; position: relative;
+        }
+        .growth-step {
+            padding: 1.5rem 2rem; background: rgba(10,10,15,0.8); border: 1px solid rgba(255,255,255,0.1);
+            position: relative; transition: var(--transition-fast); border-radius: 8px; backdrop-filter: blur(5px);
+        }
+        .growth-step::before {
+            content: ''; position: absolute; left: -3.4rem; top: 50%; transform: translateY(-50%);
+            width: 16px; height: 16px; border-radius: 50%; background: var(--bg-deep); border: 2px solid var(--color-red); box-shadow: var(--glow-red);
+        }
+        .growth-step:hover { background: rgba(255,0,51,0.05); transform: translateX(20px); border-color: rgba(255,0,51,0.3); }
+        .growth-step h5 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .growth-step:last-child { border-color: var(--color-blue); box-shadow: 0 0 25px rgba(0,68,255,0.15) inset; }
+        .growth-step:last-child::before { border-color: var(--color-blue); box-shadow: var(--glow-blue); background: var(--color-blue); }
+        
+        /* ==========================================================================
+            PROCESS SECTION
+            ========================================================================== */
+        .process-timeline { max-width: 900px; margin: 0 auto; position: relative; padding-left: 4rem; }
+        .process-timeline::before { content: ''; position: absolute; left: 0; top: 0; width: 2px; height: 100%; background: rgba(255,255,255,0.1); }
+        .process-timeline::after {
+            content: ''; position: absolute; left: 0; top: 0; width: 2px; height: 100%;
+            background: linear-gradient(to bottom, transparent, var(--color-red), var(--color-blue), transparent);
+            background-size: 100% 200%; animation: circuitFlow 5s linear infinite; box-shadow: var(--glow-mixed);
+        }
+        .process-step { margin-bottom: 4rem; position: relative; background: rgba(0,0,0,0.4); padding: 2rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); transition: var(--transition-fast); }
+        .process-step:hover { border-color: rgba(0,68,255,0.3); transform: scale(1.02); }
+        .process-step::before {
+            content: attr(data-step); position: absolute; left: -6rem; top: 50%; transform: translateY(-50%);
+            width: 4rem; height: 4rem; background: var(--bg-deep); border: 2px solid var(--color-white);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-heading); font-weight: 900; font-size: 1.2rem; color: var(--color-white);
+            box-shadow: 0 0 15px rgba(255,255,255,0.2); z-index: 2; transition: var(--transition-fast);
+        }
+        .process-step:hover::before { border-color: var(--color-blue); color: var(--color-blue); box-shadow: var(--glow-blue); transform: translateY(-50%) scale(1.1); }
+        .process-step h3 { margin-bottom: 1rem; font-size: 1.8rem; letter-spacing: 2px; }
+        .process-step p { color: var(--color-muted); font-size: 1.1rem; }
+
+        /* ==========================================================================
+            TECH STACK VISUAL
+            ========================================================================== */
+        .tech-constellation { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; padding: 5rem 0; position: relative; z-index: 2; }
+        .tech-node {
+            padding: 1.2rem 2.5rem; background: rgba(10, 10, 15, 0.8); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 40px; font-family: var(--font-mono); font-size: 1.1rem; color: var(--color-white);
+            animation: floatComplex 6s ease-in-out infinite; cursor: default; transition: var(--transition-slow);
+            backdrop-filter: blur(5px); box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .tech-node:hover { border-color: var(--color-red); box-shadow: var(--glow-red); color: var(--color-white); transform: scale(1.15) !important; z-index: 10; background: var(--color-red); }
+        .tech-node:nth-child(even):hover { border-color: var(--color-blue); box-shadow: var(--glow-blue); background: var(--color-blue); }
+        .tech-node:nth-child(even) { animation-delay: 1.5s; border-color: rgba(0,68,255,0.2); }
+        .tech-node:nth-child(3n) { animation-delay: 3s; border-color: rgba(255,0,51,0.2); }
+
+        /* ==========================================================================
+            ABOUT & CTA SECTION
+            ========================================================================== */
+        .statement-section { text-align: center; max-width: 1000px; margin: 0 auto; padding: 8rem 0; position: relative; z-index: 2; }
+        .statement-section h2 { font-size: clamp(2.5rem, 4vw, 4rem); line-height: 1.2; margin-bottom: 2.5rem; color: var(--color-white); text-shadow: 0 0 30px rgba(255,255,255,0.1); }
+        .statement-section p { font-size: 1.3rem; color: var(--color-muted); font-family: var(--font-mono); }
+
+        .cta-section {
+            position: relative; text-align: center; padding: 10rem 2rem; margin-top: 5rem;
+            background: linear-gradient(180deg, transparent, rgba(255, 0, 51, 0.05) 50%, transparent);
+            border-top: 1px solid rgba(255, 0, 51, 0.15); border-bottom: 1px solid rgba(0, 68, 255, 0.15);
+            overflow: hidden;
+        }
+        .cta-bg {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 100vw; height: 100%; background: radial-gradient(circle, rgba(0,68,255,0.1) 0%, transparent 70%);
+            z-index: 0; pointer-events: none; animation: pulseLight 8s infinite alternate;
+        }
+        .cta-content { position: relative; z-index: 1; }
+        .cta-content h2 { font-size: clamp(3.5rem, 7vw, 6rem); margin-bottom: 1.5rem; text-shadow: 0 10px 20px rgba(0,0,0,0.8); }
+        .cta-content p { font-size: 1.4rem; margin-bottom: 4rem; color: var(--color-muted); font-family: var(--font-mono); }
+        .cta-buttons { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; }
+
+        /* ==========================================================================
+            CONTACT & FOOTER
+            ========================================================================== */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 5rem; position: relative; z-index: 2; }
+        .contact-info { display: flex; flex-direction: column; gap: 2.5rem; }
+        .contact-card { padding: 2.5rem; background: rgba(255,255,255,0.02); border-left: 4px solid var(--color-blue); }
+        .contact-card h4 { color: var(--color-muted); font-size: 1rem; margin-bottom: 0.8rem; letter-spacing: 2px; }
+        .contact-card a, .contact-card p { color: var(--color-white); font-size: 1.4rem; text-decoration: none; font-family: var(--font-mono); transition: var(--transition-fast); }
+        .contact-card a:hover { color: var(--color-red); text-shadow: var(--glow-red); }
+        
+        /* Form */
+        .form-group { margin-bottom: 2rem; position: relative; }
+        .form-control {
+            width: 100%; background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.1);
+            padding: 1.2rem; color: var(--color-white); font-family: var(--font-mono); font-size: 1.1rem;
+            outline: none; transition: var(--transition-fast); border-radius: 4px;
+        }
+        .form-control:focus { border-color: var(--color-red); box-shadow: 0 0 15px rgba(255,0,51,0.2) inset; }
+        textarea.form-control { resize: vertical; min-height: 150px; }
+
+        footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 5rem 0 2rem; margin-top: 8rem; background: #030303; position: relative; z-index: 10; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 5rem; }
+        .footer-logo { margin-bottom: 1.5rem; }
+        .footer-links h5 { color: var(--color-white); margin-bottom: 2rem; font-size: 1.1rem; letter-spacing: 2px; }
+        .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+        .footer-links a { color: var(--color-muted); text-decoration: none; transition: var(--transition-fast); font-family: var(--font-mono); }
+        .footer-links a:hover { color: var(--color-blue); padding-left: 8px; text-shadow: var(--glow-blue); }
+        .footer-bottom { text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2.5rem; color: var(--color-muted); font-size: 0.9rem; font-family: var(--font-mono); }
+
+        /* ==========================================================================
+            RESPONSIVE DESIGN
+            ========================================================================== */
+        @media (max-width: 1024px) {
+            .founder-wrapper { grid-template-columns: 1fr; }
+            .stats-container { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+            .hero-graphic { opacity: 0.2; right: -20%; }
+        }
+        @media (max-width: 768px) {
+            .logo img { width: 70px; height: 70px; }
+            .logo span { font-size: 1.2rem; }
+            .nav-menu {
+                position: absolute; top: 100%; left: 0; width: 100%;
+                background: rgba(0, 0, 0, 0.98); backdrop-filter: blur(20px);
+                flex-direction: column; padding: 3rem; border-bottom: 1px solid var(--color-red);
+                display: none; text-align: center;
+            }
+            .nav-menu a { font-size: 1.3rem; padding: 1rem 0; }
+            .mobile-toggle-btn { display: block; }
+            #mobile-menu-checkbox:checked ~ .nav-menu { display: flex; }
+            
+            .hero-ctas { flex-direction: column; align-items: stretch; }
+            .pipeline-track { flex-direction: column; gap: 4rem; padding: 4rem 2rem; }
+            .pipeline-track::before, .pipeline-track::after { width: 2px; height: 90%; left: 50%; top: 5%; transform: translateX(-50%); }
+            .pipeline-track::after { background: linear-gradient(to bottom, transparent, var(--color-red), var(--color-blue), transparent); }
+            
+            .contact-grid, .footer-grid { grid-template-columns: 1fr; }
+            .process-timeline { padding-left: 2rem; }
+            .process-step::before { left: -3.5rem; width: 3rem; height: 3rem; font-size: 1rem; }
+        }
+        
+        /* Reduce Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="fixed-bg"></div>
+    <div class="moire-grid"></div>
+    <div class="perspective-grid"></div>
+    <div class="scanning-line"></div>
+    <div class="ambient-light light-red"></div>
+    <div class="ambient-light light-blue"></div>
+    
+    <div class="floating-element fe-1"></div>
+    <div class="floating-element fe-2"></div>
+    <div class="floating-element fe-3"></div>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img src="na.jpeg" alt="Neural Automation Logo">
+                <span>NEURAL <small>AUTOMATION</small></span>
+            </a>
+            
+            <input type="checkbox" id="mobile-menu-checkbox">
+            <label for="mobile-menu-checkbox" class="mobile-toggle-btn">☰</label>
+            
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#why-us">Process</a></li>
+                <li><a href="#results">Results</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content reveal">
+                <div class="mono-label">System Online</div>
+                <h1>BUILD. <span class="text-red">AUTOMATE.</span> GROW.</h1>
+                <p>Neural Automation builds intelligent digital experiences, AI-powered solutions and growth systems designed to help businesses move faster, operate smarter and grow organically.</p>
+                <div class="hero-ctas">
+                    <a href="#contact" class="btn btn-primary">Start Your Project →</a>
+                    <a href="#services" class="btn btn-secondary">Explore Our Capabilities ↓</a>
+                </div>
+                <div class="credibility-strip">
+                    <span>Websites</span>
+                    <span>Apps</span>
+                    <span>AI/ML</span>
+                    <span>Data</span>
+                    <span>Automation</span>
+                    <span>DIGITAL MARKETING / SOCIAL MEDIA MARKETING</span>
+                </div>
+            </div>
+            
+            <div class="hero-graphic">
+                <div class="cyber-core">
+                    <div class="ring ring-1"></div>
+                    <div class="ring ring-2"></div>
+                    <div class="ring ring-3"></div>
+                    <div class="core-node"></div>
+                    <div class="ring-1" style="position: absolute; border:none; top:50%; left:50%; transform:translate(-50%,-50%); width:300px; height:300px; animation: spin 10s linear infinite;">
+                        <div class="orbit-node"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section-padding container reveal">
+        <div class="section-header">
+            <div class="mono-label">Capabilities</div>
+            <h2><span class="text-gradient">DIGITAL SYSTEMS.</span> ENGINEERED FOR GROWTH.</h2>
+        </div>
+        
+        <div class="capabilities-grid">
+            <div class="glass-panel cap-card">
+                <div class="cap-num">01</div>
+                <h3>WEB</h3>
+                <p>High-performance websites and modern digital experiences for companies, brands and businesses.</p>
+            </div>
+            <div class="glass-panel cap-card">
+                <div class="cap-num">02</div>
+                <h3>APPS</h3>
+                <p>Modern web applications and business applications designed around real-world workflows.</p>
+            </div>
+            <div class="glass-panel cap-card">
+                <div class="cap-num">03</div>
+                <h3>AI / ML</h3>
+                <p>AI and machine-learning solutions, intelligent systems and custom models tailored for precision.</p>
+            </div>
+            <div class="glass-panel cap-card">
+                <div class="cap-num">04</div>
+                <h3>DATA SCIENCE</h3>
+                <p>Data-driven solutions, deep analysis, and advanced project development mapping operational truths.</p>
+            </div>
+            <div class="glass-panel cap-card">
+                <div class="cap-num">05</div>
+                <h3>AUTOMATION</h3>
+                <p>Intelligent workflow automation designed to reduce repetitive work and improve operational efficiency.</p>
+            </div>
+            <div class="glass-panel cap-card">
+                <div class="cap-num">06</div>
+                <h3>DIGITAL MARKETING / SOCIAL MEDIA MARKETING</h3>
+                <p>Social media marketing, content strategy, organic growth, and maximizing digital visibility.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us" class="section-padding container reveal">
+        <div class="section-header">
+            <div class="mono-label">Integration</div>
+            <h2>TECHNOLOGY MEETS GROWTH.</h2>
+            <p style="max-width: 600px; margin: 1.5rem auto; color: var(--color-muted); font-size: 1.2rem;">We combine technical development and digital marketing instead of treating them as separate services.</p>
+        </div>
+        
+        <div class="pipeline-container">
+            <div class="pipeline-track">
+                <div class="stage">
+                    <div class="stage-icon"><span>I</span></div>
+                    <h4>IDEA</h4>
+                    <p>Conceptualizing digital solutions aligned with business metrics.</p>
+                </div>
+                <div class="stage">
+                    <div class="stage-icon"><span>B</span></div>
+                    <h4>BUILD</h4>
+                    <p>Websites, applications, AI/ML systems and data projects.</p>
+                </div>
+                <div class="stage">
+                    <div class="stage-icon"><span>A</span></div>
+                    <h4>AUTOMATE</h4>
+                    <p>AI automation and intelligent workflows for operations.</p>
+                </div>
+                <div class="stage">
+                    <div class="stage-icon"><span>G</span></div>
+                    <h4>GROW</h4>
+                    <p>Digital marketing, social strategy, and organic content systems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="founder" class="section-padding container reveal">
+        <div class="mono-label">Leadership</div>
+        <div class="founder-wrapper">
+            <div class="founder-info">
+                <h2>THE ENGINE BEHIND NEURAL AUTOMATION</h2>
+                <h3>Raghav Rastogi</h3>
+                <p>Raghav Rastogi is the founder of Neural Automation, focused on building websites, digital systems and growth strategies for companies and businesses.</p>
+                <p>He is certified by Google in Digital Marketing and E-commerce.</p>
+                <p>He completed AI/ML certification training from CETPA Institute.</p>
+                <p>He has also learned Agentic AI and Project Management through Vishleshan Hub, IIT Patna, and holds certification for that course.</p>
+                <p>His practical focus is on combining technology with digital growth — building websites and digital experiences while helping businesses achieve stronger organic visibility through social media and content strategy.</p>
+            </div>
+            <div class="cert-grid">
+                <div class="glass-panel cert-card">
+                    <div class="cert-icon">G</div>
+                    <div>
+                        <div class="mono-label" style="font-size: 0.65rem; background: rgba(0,0,0,0.5);">Certified</div>
+                        <h4 style="margin-top: 8px;">GOOGLE</h4>
+                        <p style="color: var(--color-muted); font-size: 0.95rem; margin:0;">Digital Marketing & E-commerce</p>
+                    </div>
+                </div>
+                <div class="glass-panel cert-card">
+                    <div class="cert-icon">C</div>
+                    <div>
+                        <div class="mono-label" style="font-size: 0.65rem; background: rgba(0,0,0,0.5);">Certified</div>
+                        <h4 style="margin-top: 8px;">CETPA INSTITUTE</h4>
+                        <p style="color: var(--color-muted); font-size: 0.95rem; margin:0;">AI / ML Certification Training</p>
+                    </div>
+                </div>
+                <div class="glass-panel cert-card">
+                    <div class="cert-icon">I</div>
+                    <div>
+                        <div class="mono-label" style="font-size: 0.65rem; background: rgba(0,0,0,0.5);">Certified</div>
+                        <h4 style="margin-top: 8px;">IIT PATNA — VISHLESHAN HUB</h4>
+                        <p style="color: var(--color-muted); font-size: 0.95rem; margin:0;">Agentic AI & Project Management</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="results" class="section-padding container reveal">
+        <div class="section-header">
+            <div class="mono-label">Proof of Concept</div>
+            <h2>RESULTS THAT SPEAK LOUDER.</h2>
+            <p style="color: var(--color-white); margin-top: 1.5rem; font-size: 1.2rem;">Hands-on experience in social media growth, viral-content strategy and building organic digital visibility.</p>
+        </div>
+        
+        <div class="stats-container">
+            <div class="glass-panel stat-box">
+                <div class="stat-number">150+</div>
+                <div class="stat-label">FOLLOWERS</div>
+                <div class="stat-desc">From 0 in under 2 months</div>
+            </div>
+            <div class="glass-panel stat-box">
+                <div class="stat-number text-gradient">3.5L+</div>
+                <div class="stat-label">TOTAL VIEWS</div>
+                <div class="stat-desc">Generated on dashboard</div>
+            </div>
+            <div class="glass-panel stat-box">
+                <div class="stat-number">105K+</div>
+                <div class="stat-label">VIEWS</div>
+                <div class="stat-desc">On one viral video</div>
+            </div>
+        </div>
+
+        <div class="section-header" style="margin-top: 8rem; margin-bottom: 3rem;">
+            <h2>FROM ZERO TO SIGNAL.</h2>
+        </div>
+        <div class="growth-flow">
+            <div class="growth-step"><h5>0 FOLLOWERS</h5><p class="mono-label">Baseline</p></div>
+            <div class="growth-step"><h5>CONTENT SYSTEM</h5><p class="mono-label">Strategy deployed</p></div>
+            <div class="growth-step"><h5>CONSISTENCY</h5><p class="mono-label">Algorithmic training</p></div>
+            <div class="growth-step"><h5>ORGANIC DISTRIBUTION</h5><p class="mono-label">Network effect</p></div>
+            <div class="growth-step"><h5>150+ FOLLOWERS UNDER 60 DAYS</h5><p class="mono-label" style="background: var(--color-blue); border-color: var(--color-blue);">Scale achieved</p></div>
+        </div>
+    </section>
+
+    <section id="process" class="section-padding container reveal">
+        <div class="section-header">
+            <div class="mono-label">Methodology</div>
+            <h2>FROM CONCEPT TO DIGITAL SYSTEM.</h2>
+        </div>
+        
+        <div class="process-timeline">
+            <div class="process-step" data-step="01">
+                <h3>DISCOVER</h3>
+                <p>Understand the business, audience and core operational objectives.</p>
+            </div>
+            <div class="process-step" data-step="02">
+                <h3>STRATEGIZE</h3>
+                <p>Develop the right technical architecture and targeted growth strategy.</p>
+            </div>
+            <div class="process-step" data-step="03">
+                <h3>BUILD</h3>
+                <p>Design and develop the functional digital product or automated system.</p>
+            </div>
+            <div class="process-step" data-step="04">
+                <h3>OPTIMIZE</h3>
+                <p>Test rigorously, refine code logic, and improve performance metrics.</p>
+            </div>
+            <div class="process-step" data-step="05">
+                <h3>GROW</h3>
+                <p>Scale visibility, enhance automation deployment, and maximize digital impact.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding container reveal">
+        <div class="section-header">
+            <h2>BUILT FOR THE MODERN WEB</h2>
+        </div>
+        <div class="tech-constellation">
+            <div class="tech-node">WEB</div>
+            <div class="tech-node">AI</div>
+            <div class="tech-node">APPS</div>
+            <div class="tech-node">DATA</div>
+            <div class="tech-node">ML</div>
+            <div class="tech-node">AUTOMATION</div>
+            <div class="tech-node">MARKETING</div>
+            <div class="tech-node">SOCIAL</div>
+        </div>
+    </section>
+
+    <section id="about" class="container reveal">
+        <div class="statement-section glass-panel" style="padding: 5rem; border-radius: 16px; border-color: rgba(255,0,51,0.2);">
+            <h2>WE DON'T JUST BUILD DIGITAL PRODUCTS.<br><span class="text-blue">WE BUILD SYSTEMS THAT MOVE BUSINESSES FORWARD.</span></h2>
+            <p>Neural Automation combines web development, applications, AI/ML, automation and digital marketing into one technology-driven ecosystem. The goal is simple: create better digital experiences and help businesses grow faster.</p>
+        </div>
+    </section>
+
+    <section class="cta-section reveal">
+        <div class="cta-bg"></div>
+        <div class="container cta-content">
+            <h2>READY TO BUILD <span class="text-gradient">WHAT'S NEXT?</span></h2>
+            <p>Tell us what you want to build, automate or grow.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">START A PROJECT →</a>
+                <a href="#contact" class="btn btn-secondary">CONTACT NEURAL AUTOMATION</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding container reveal">
+        <div class="section-header" style="text-align: left;">
+            <div class="mono-label">Communication Node</div>
+            <h2>CONTACT DETAILS :-</h2>
+        </div>
+        
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="glass-panel contact-card">
+                    <h4>FOUNDER</h4>
+                    <p>Raghav Rastogi</p>
+                </div>
+                <div class="glass-panel contact-card" style="border-left-color: var(--color-red);">
+                    <h4>WHATSAPP MOBILE NO.</h4>
+                    <a href="tel:+917042145705">+91 7042145705</a>
+                </div>
+                <div class="glass-panel contact-card">
+                    <h4><GMAIL:-></GMAIL:-></h4>
+                    <a href="mailto:Neural.automation.2009@gmail.com" style="word-break: break-all;">Neural.automation.2009@gmail.com</a>
+                </div>
+            </div>
+            
+            <div class="glass-panel" style="padding: 3.5rem;">
+                <h3 style="margin-bottom: 2.5rem; color: var(--color-white); letter-spacing: 2px;">TRANSMIT REQUIREMENTS</h3>
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Company / Business">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Service Required (Web, AI, Growth...)">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Project Details" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.5rem;">INITIALIZE UPLOAD →</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#" class="logo footer-logo">
+                        <img src="na.jpeg" alt="Neural Automation Logo" style="width: 80px; height: 80px;">
+                        <span>NEURAL <small>AUTOMATION</small></span>
+                    </a>
+                    <p class="mono-label" style="margin-bottom: 2rem; background: transparent; border: none; padding: 0;">AI • AUTOMATION • DIGITAL GROWTH</p>
+                </div>
+                <div class="footer-links">
+                    <h5>PLATFORMS</h5>
+                    <ul>
+                        <li><a href="#" target="_blank">Instagram — Raghav Rastogi / Neural Automation</a></li>
+                        <li><a href="#" target="_blank">Facebook — Raghav Rastogi / Neural Automation</a></li>
+                        <li><a href="#" target="_blank">YouTube — Raghav Rastogi / Neural Automation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h5>INDEX</h5>
+                    <ul>
+                        <li><a href="#home">Home / Core</a></li>
+                        <li><a href="#services">Capabilities</a></li>
+                        <li><a href="#results">Results</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Neural Automation. All rights reserved. | Built for the future.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('#contact form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: this.querySelector('input[placeholder="Name"]').value,
+                email: this.querySelector('input[placeholder="Email"]').value,
+                company: this.querySelector('input[placeholder="Company / Business"]').value,
+                service: this.querySelector('input[placeholder="Service Required (Web, AI, Growth...)"]').value,
+                details: this.querySelector('textarea').value
+            };
+
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = "TRANSMITTING...";
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch('http://localhost:5000/api/inquiries', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    alert("Transmission successful! We have logged your request.");
+                    this.reset();
+                } else {
+                    alert("Transmission failed. Please try again.");
+                }
+            } catch (error) {
+                console.error('Network error:', error);
+                alert("Error connecting to server node.");
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

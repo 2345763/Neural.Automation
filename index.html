@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neural Automation | AI, Automation, Websites & Digital Growth</title>
+    <meta name="description" content="Neural Automation builds websites, applications, AI/ML solutions, automation systems and digital growth strategies for modern businesses.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+            ROOT VARIABLES & RESET (BLACK, BLUE, RED THEME)
+            ========================================================================== */
+        :root {
+            --bg-deep: #020203;
+            /* Supreme Glass Variables - INTENSIFIED */
+            --glass-bg: rgba(15, 15, 20, 0.12);
+            --glass-bg-hover: rgba(25, 25, 35, 0.25);
+            --glass-border-light: rgba(255, 255, 255, 0.35);
+            --glass-border-dark: rgba(255, 255, 255, 0.1);
+            
+            --color-red: #ff0033;
+            --color-blue: #0044ff;
+            --color-white: #ffffff;
+            --color-muted: #8b9bb4;
+            --color-dark: #050505;
+            
+            --glow-red: 0 0 35px rgba(255, 0, 51, 0.6);
+            --glow-blue: 0 0 45px rgba(0, 68, 255, 0.6);
+            --glow-mixed: 0 0 30px rgba(255, 0, 51, 0.5), 0 0 50px rgba(0, 68, 255, 0.4);
+            
+            --font-heading: 'Orbitron', sans-serif;
+            --font-body: 'Rajdhani', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            
+            /* Ultra-smooth Bezier Curves for Magical Animations */
+            --transition-fast: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-magical: 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--color-white);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ==========================================================================
+            ADVANCED VISUAL EFFECTS (MOIRÉ, GRIDS, PARTICLES)
+            ========================================================================== */
+        .fixed-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -4;
+            background: radial-gradient(circle at 50% 50%, #06060c 0%, var(--bg-deep) 100%);
+        }
+
+        .moire-grid {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -3;
+            background-image: 
+                repeating-linear-gradient(45deg, rgba(255,0,51,0.03) 0, rgba(255,0,51,0.03) 1px, transparent 1px, transparent 8px),
+                repeating-linear-gradient(-45deg, rgba(0,68,255,0.03) 0, rgba(0,68,255,0.03) 1px, transparent 1px, transparent 8px);
+            opacity: 0.8;
+            pointer-events: none;
+            animation: moirePulse 10s ease-in-out infinite alternate;
+        }
+
+        .perspective-grid {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -2;
+            background-image: 
+                linear-gradient(to right, rgba(0, 68, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 0, 51, 0.05) 1px, transparent 1px);
+            background-size: 100px 100px;
+            transform: perspective(600px) rotateX(60deg) translateY(-100px) scale(3.5);
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+        }
+
+        .ambient-light {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.3;
+            z-index: -1;
+            pointer-events: none;
+            animation: pulseLight 12s ease-in-out infinite alternate;
+        }
+        .light-red { top: -10%; left: -10%; width: 600px; height: 600px; background: var(--color-red); }
+        .light-blue { bottom: -10%; right: -10%; width: 700px; height: 700px; background: var(--color-blue); animation-delay: -6s; }
+
+        /* Floating Tech Elements */
+        .floating-element {
+            position: absolute;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.15);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 0; pointer-events: none;
+            animation: floatComplex 10s ease-in-out infinite;
+            border-radius: 20px;
+        }
+        .fe-1 { width: 150px; height: 150px; top: 15%; left: 5%; border-radius: 50%; border-color: rgba(0,68,255,0.3); animation-delay: 0s; }
+        .fe-2 { width: 100px; height: 100px; top: 60%; right: 10%; transform: rotate(45deg); border-color: rgba(255,0,51,0.3); animation-delay: -3s; }
+
+        /* Animations */
+        @keyframes gridMove {
+            0% { transform: perspective(600px) rotateX(60deg) translateY(0) scale(3.5); }
+            100% { transform: perspective(600px) rotateX(60deg) translateY(100px) scale(3.5); }
+        }
+        @keyframes pulseLight { 0% { transform: scale(0.8) translate(0, 0); opacity: 0.2; } 100% { transform: scale(1.2) translate(50px, 50px); opacity: 0.4; } }
+        @keyframes floatComplex {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-40px) rotate(15deg); }
+        }
+        @keyframes circuitFlow { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+        @keyframes moirePulse { 0% { opacity: 0.4; } 100% { opacity: 1; } }
+
+        /* ==========================================================================
+            MAGICAL SCROLL REVEAL CLASSES (JS Triggered)
+            ========================================================================== */
+        .magical-reveal {
+            opacity: 0;
+            transform: translateY(80px) scale(0.92);
+            filter: blur(25px);
+            transition: opacity var(--transition-magical), transform var(--transition-magical), filter var(--transition-magical);
+            will-change: opacity, transform, filter;
+        }
+        .magical-reveal.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+        /* Stagger delays for grid items */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+        /* ==========================================================================
+            TYPOGRAPHY & UTILITIES
+            ========================================================================== */
+        h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 2px; }
+        .text-red { color: var(--color-red); text-shadow: var(--glow-red); }
+        .text-blue { color: var(--color-blue); text-shadow: var(--glow-blue); }
+        .text-gradient {
+            background: linear-gradient(90deg, var(--color-red), var(--color-white), var(--color-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: circuitFlow 5s linear infinite;
+        }
+        
+        .mono-label {
+            font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 3px;
+            color: var(--color-white); text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.05); padding: 6px 16px; 
+            border: 1px solid rgba(255,255,255,0.15); border-radius: 30px;
+            backdrop-filter: blur(12px); box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        .mono-label::before {
+            content: ''; display: inline-block; width: 8px; height: 8px;
+            background-color: var(--color-red); border-radius: 50%; box-shadow: var(--glow-red);
+            animation: blink 1.5s infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(0.8); } }
+
+        .container { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 5%; }
+        .section-padding { padding: 9rem 0; }
+        
+        /* ==========================================================================
+            SUPREME GLASS PANELS - INTENSIFIED
+            ========================================================================== */
+        .glass-panel {
+            background: linear-gradient(135deg, var(--glass-bg), rgba(5, 5, 10, 0.3));
+            backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px);
+            border: 1px solid var(--glass-border-dark);
+            border-top: 1px solid var(--glass-border-light);
+            border-left: 1px solid var(--glass-border-light);
+            border-radius: 20px; position: relative; overflow: hidden;
+            transition: var(--transition-slow);
+            box-shadow: inset 1px 1px 3px rgba(255,255,255,0.15), 0 15px 40px rgba(0,0,0,0.7);
+        }
+        .glass-panel:hover {
+            border-color: rgba(0, 68, 255, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: inset 1px 1px 4px rgba(255,255,255,0.3), var(--glow-mixed), 0 25px 60px rgba(0,0,0,0.9);
+            transform: translateY(-8px) scale(1.02);
+            background: linear-gradient(135deg, var(--glass-bg-hover), rgba(15, 15, 25, 0.4));
+        }
+
+        /* Glass Buttons */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 1.2rem 2.5rem; font-family: var(--font-heading); font-size: 0.95rem; font-weight: 700;
+            text-decoration: none; text-transform: uppercase; letter-spacing: 2px;
+            position: relative; cursor: pointer; border: none; background: transparent;
+            color: var(--color-white); transition: var(--transition-fast); z-index: 1; overflow: hidden;
+            border-radius: 12px;
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            border-top: 1px solid rgba(255,255,255,0.4);
+            border-left: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+        }
+        .btn-primary {
+            background: rgba(255, 0, 51, 0.2);
+            border-right: 1px solid rgba(255, 0, 51, 0.5);
+            border-bottom: 1px solid rgba(255, 0, 51, 0.5);
+        }
+        .btn-primary::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 51, 0.6), transparent);
+            transition: var(--transition-slow); z-index: -1;
+        }
+        .btn-primary:hover::before { left: 100%; }
+        .btn-primary:hover { box-shadow: var(--glow-red), 0 15px 35px rgba(0,0,0,0.9); text-shadow: 0 0 10px var(--color-white); transform: translateY(-4px); }
+        
+        .btn-secondary {
+            background: rgba(0, 68, 255, 0.2);
+            border-right: 1px solid rgba(0, 68, 255, 0.5);
+            border-bottom: 1px solid rgba(0, 68, 255, 0.5);
+        }
+        .btn-secondary::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 68, 255, 0.6), transparent);
+            transition: var(--transition-slow); z-index: -1;
+        }
+        .btn-secondary:hover::before { left: 100%; }
+        .btn-secondary:hover { box-shadow: var(--glow-blue), 0 15px 35px rgba(0,0,0,0.9); text-shadow: 0 0 10px var(--color-white); transform: translateY(-4px); }
+
+        /* ==========================================================================
+            THE "NOTCH" NAVIGATION (DYNAMIC ISLAND STYLE)
+            ========================================================================== */
+        header {
+            position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%);
+            width: 92%; max-width: 1200px;
+            background: linear-gradient(135deg, rgba(20, 20, 25, 0.5), rgba(5, 5, 10, 0.3));
+            backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.4); 
+            border-radius: 50px;
+            z-index: 1000; padding: 0.5rem 1.5rem; transition: var(--transition-slow);
+            box-shadow: inset 0 2px 5px rgba(255,255,255,0.15), 0 20px 40px rgba(0,0,0,0.8);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        
+        .logo {
+            display: flex; align-items: center; gap: 15px;
+            text-decoration: none; color: var(--color-white);
+            font-family: var(--font-heading); font-weight: 900; font-size: 1.2rem; letter-spacing: 2px;
+        }
+        .logo img {
+            width: 50px; height: 50px; object-fit: contain;
+            filter: drop-shadow(0 0 15px rgba(255, 0, 51, 0.8)) drop-shadow(0 0 20px rgba(0, 68, 255, 0.6));
+            border-radius: 50%; transition: var(--transition-slow);
+        }
+        .logo:hover img { transform: scale(1.1) rotate(5deg); filter: drop-shadow(0 0 25px rgba(255, 0, 51, 1)); }
+        .logo span { display: flex; flex-direction: column; line-height: 1; text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+        .logo span small { font-size: 0.6rem; color: var(--color-red); letter-spacing: 5px; margin-top: 2px; }
+
+        .nav-menu { display: flex; gap: 0.5rem; list-style: none; align-items: center; margin: 0; padding: 0; }
+        .nav-menu a {
+            color: var(--color-white); text-decoration: none; font-family: var(--font-mono);
+            font-size: 0.85rem; text-transform: uppercase; transition: var(--transition-fast);
+            padding: 0.8rem 1.2rem; border-radius: 30px;
+            background: rgba(255,255,255,0.0);
+            border: 1px solid transparent;
+        }
+        .nav-menu a:hover { 
+            background: rgba(255,255,255,0.1); 
+            border-top: 1px solid rgba(255,255,255,0.3);
+            border-bottom: 1px solid rgba(0,68,255,0.5);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.2);
+            text-shadow: 0 0 8px var(--color-white); 
+        }
+
+        .notch-cta {
+            background: rgba(255,0,51,0.2); border-radius: 30px;
+            padding: 0.6rem 1.5rem; font-family: var(--font-heading); font-size: 0.8rem;
+            color: var(--color-white); text-decoration: none; font-weight: 700;
+            border-top: 1px solid rgba(255,255,255,0.4); border-bottom: 1px solid var(--color-red);
+            box-shadow: var(--glow-red); transition: var(--transition-fast);
+        }
+        .notch-cta:hover { background: rgba(255,0,51,0.4); transform: scale(1.05); box-shadow: 0 0 35px rgba(255,0,51,0.9); }
+
+        .mobile-toggle-btn { display: none; cursor: pointer; color: var(--color-white); font-size: 1.5rem; text-shadow: var(--glow-red); background: none; border: none; outline: none; }
+
+        /* ==========================================================================
+            HERO SECTION
+            ========================================================================== */
+        .hero {
+            position: relative; min-height: 100vh; display: flex; align-items: center;
+            padding-top: 120px; overflow: hidden;
+        }
+        .hero-content { max-width: 950px; position: relative; z-index: 10; }
+        .hero h1 {
+            font-size: clamp(3.5rem, 8vw, 7rem); line-height: 1.05; margin: 1.5rem 0; font-weight: 900;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        .hero p {
+            font-size: clamp(1.2rem, 2vw, 1.5rem); color: var(--color-muted); max-width: 750px;
+            margin-bottom: 3rem; font-family: var(--font-mono); line-height: 1.7;
+        }
+        .hero-ctas { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; margin-bottom: 5rem; }
+        
+        .credibility-strip {
+            display: flex; gap: 1.5rem; align-items: center; font-family: var(--font-mono);
+            font-size: 0.9rem; color: var(--color-white); flex-wrap: wrap;
+            background: linear-gradient(90deg, rgba(20,20,25,0.4), rgba(5,5,10,0.2));
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255,255,255,0.1); border-top: 1px solid rgba(255,255,255,0.3);
+            padding: 1.5rem 2rem; border-radius: 20px;
+            box-shadow: inset 1px 1px 3px rgba(255,255,255,0.15), 0 15px 35px rgba(0,0,0,0.6);
+        }
+        .credibility-strip span { display: flex; align-items: center; gap: 0.5rem; text-shadow: 0 0 5px rgba(0,68,255,0.5); }
+        .credibility-strip span::before { content: '•'; color: var(--color-red); text-shadow: var(--glow-red); font-size: 1.5rem; line-height: 0; }
+        
+        /* Floating Geometric Core */
+        .hero-graphic {
+            position: absolute; right: 2%; top: 50%; transform: translateY(-50%);
+            width: 600px; height: 600px; z-index: 1; pointer-events: none; opacity: 0.8;
+        }
+        .cyber-core { position: relative; width: 100%; height: 100%; animation: floatComplex 12s infinite; }
+        .ring { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(6px); }
+        .ring-1 { width: 300px; height: 300px; border-top-color: var(--color-red); animation: spin 10s linear infinite; box-shadow: inset 0 0 25px rgba(255,0,51,0.15); }
+        .ring-2 { width: 450px; height: 450px; border-right-color: var(--color-blue); animation: spin 15s linear infinite reverse; box-shadow: 0 0 35px rgba(0,68,255,0.15); }
+        .ring-3 { width: 550px; height: 550px; border: 2px dashed rgba(255,0,51,0.3); animation: spin 25s linear infinite; }
+        
+        .core-node {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 60px; height: 60px; background: var(--color-red); border-radius: 50%;
+            box-shadow: var(--glow-red), 0 0 60px var(--color-red); animation: pulseLight 2s infinite alternate;
+        }
+        .orbit-node { position: absolute; width: 15px; height: 15px; background: var(--color-blue); border-radius: 50%; box-shadow: var(--glow-blue); top: 0; left: 50%; transform: translate(-50%, -50%); }
+
+        @keyframes spin { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+
+        /* ==========================================================================
+            CAPABILITIES SECTION
+            ========================================================================== */
+        .section-header { text-align: center; margin-bottom: 5rem; position: relative; z-index: 2; }
+        .section-header h2 { font-size: clamp(2.5rem, 4vw, 3.5rem); margin-top: 1.5rem; text-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        
+        .capabilities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; position: relative; z-index: 2; }
+        .cap-card { padding: 3rem 2.5rem; }
+        .cap-num {
+            font-family: var(--font-heading); font-size: 4rem; font-weight: 900;
+            color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, 0.25);
+            margin-bottom: 1.5rem; line-height: 1; transition: var(--transition-slow);
+            position: absolute; top: 20px; right: 20px; opacity: 0.5;
+        }
+        .cap-card:hover .cap-num {
+            -webkit-text-stroke: 1px var(--color-red); color: rgba(255,0,51,0.15);
+            text-shadow: var(--glow-red); transform: scale(1.1) translate(-10px, 10px); opacity: 1;
+        }
+        .cap-card h3 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--color-white); display: flex; align-items: center; gap: 15px; }
+        .cap-card h3::before { content: ''; width: 12px; height: 12px; background: var(--color-blue); display: block; box-shadow: var(--glow-blue); border-radius: 50%;}
+        .cap-card p { color: var(--color-muted); font-size: 1.1rem; }
+        .cap-card::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 3px;
+            background: linear-gradient(90deg, var(--color-blue), var(--color-red)); transition: var(--transition-slow);
+        }
+        .cap-card:hover::after { width: 100%; box-shadow: var(--glow-mixed); }
+
+        /* ==========================================================================
+            PRICING / PACKAGES SECTION 
+            ========================================================================== */
+        .pricing-grid {
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 2rem; 
+            margin-top: 4rem;
+            position: relative; 
+            z-index: 2;
+        }
+        .pricing-card {
+            display: flex;
+            flex-direction: column;
+            padding: 3.5rem 2rem;
+            text-align: center;
+        }
+        .pricing-card-blue { border-top: 4px solid var(--color-blue); }
+        .pricing-card-red { border-top: 4px solid var(--color-red); transform: scale(1.02); }
+        
+        .pricing-title {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .pricing-target {
+            font-size: 0.9rem;
+            color: var(--color-muted);
+            font-family: var(--font-mono);
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+            min-height: 40px; 
+        }
+        .pricing-price {
+            font-family: var(--font-heading);
+            font-size: 3.2rem;
+            font-weight: 900;
+            color: var(--color-white);
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+        .pricing-price small {
+            font-size: 1rem;
+            font-family: var(--font-mono);
+            color: var(--color-muted);
+            font-weight: normal;
+            display: block;
+            margin-top: 8px;
+        }
+        .pricing-features {
+            list-style: none;
+            margin: 0 0 3rem 0;
+            padding: 0;
+            text-align: left;
+            flex-grow: 1;
+        }
+        .pricing-features li {
+            font-size: 1.05rem;
+            color: var(--color-white);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .pricing-features li::before {
+            content: '✦';
+            color: var(--color-blue);
+            text-shadow: var(--glow-blue);
+            font-size: 1.2rem;
+        }
+        .pricing-card-red .pricing-features li::before {
+            color: var(--color-red);
+            text-shadow: var(--glow-red);
+        }
+
+        /* ==========================================================================
+            PROCESS / INTEGRATION PIPELINE
+            ========================================================================== */
+        .pipeline-container { margin-top: 5rem; position: relative; }
+        .pipeline-track {
+            display: flex; justify-content: space-between; align-items: center; position: relative;
+            background: linear-gradient(135deg, rgba(20,20,30,0.5), rgba(5,5,10,0.3)); 
+            padding: 5rem 3rem; border-radius: 24px;
+            border: 1px solid rgba(255,0,51,0.15); border-top: 1px solid rgba(255,255,255,0.3);
+            box-shadow: inset 1px 1px 4px rgba(255,255,255,0.2), 0 20px 60px rgba(0,0,0,0.8);
+            backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px);
+        }
+        .pipeline-track::before { content: ''; position: absolute; top: 50%; left: 5%; width: 90%; height: 2px; background: rgba(255,255,255,0.1); transform: translateY(-50%); z-index: 0; }
+        .pipeline-track::after {
+            content: ''; position: absolute; top: 50%; left: 5%; width: 90%; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--color-red), var(--color-blue), transparent);
+            transform: translateY(-50%); z-index: 0; background-size: 200%;
+            animation: circuitFlow 3s linear infinite; box-shadow: var(--glow-mixed);
+        }
+        .stage { position: relative; z-index: 1; text-align: center; width: 220px; transition: var(--transition-fast); }
+        .stage:hover { transform: translateY(-20px); }
+        .stage-icon {
+            width: 90px; height: 90px; margin: 0 auto 2rem;
+            background: rgba(10,10,15,0.7); border: 2px solid rgba(255,255,255,0.3);
+            border-top: 2px solid rgba(255,255,255,0.6);
+            backdrop-filter: blur(25px); border-radius: 20px; display: flex; align-items: center; justify-content: center;
+            box-shadow: inset 0 5px 15px rgba(255,255,255,0.1), 0 15px 30px rgba(0,0,0,0.6);
+            font-family: var(--font-heading); font-size: 2.2rem; font-weight: 900; color: var(--color-white);
+            transform: rotate(45deg); transition: var(--transition-magical);
+        }
+        .stage-icon span { transform: rotate(-45deg); transition: var(--transition-magical); }
+        .stage:hover .stage-icon { border-color: var(--color-red); box-shadow: inset 0 0 35px rgba(255,0,51,0.3), var(--glow-red); transform: rotate(135deg); background: rgba(255,0,51,0.15); }
+        .stage:hover .stage-icon span { transform: rotate(-135deg); color: var(--color-red); }
+        
+        .stage h4 { margin-bottom: 1rem; font-size: 1.4rem; letter-spacing: 3px; }
+        .stage p { font-size: 1rem; color: var(--color-muted); line-height: 1.5; font-family: var(--font-mono); }
+
+        /* ==========================================================================
+            FOUNDER SECTION
+            ========================================================================== */
+        .founder-wrapper { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: center; position: relative; }
+        .founder-info h3 { font-size: 3rem; margin: 1.5rem 0 2.5rem; color: var(--color-white); text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+        .founder-info p { margin-bottom: 2rem; font-size: 1.2rem; color: #b0c0d0; }
+        
+        .cert-grid { display: grid; gap: 2rem; position: relative; z-index: 2; }
+        .cert-card {
+            display: flex; align-items: center; gap: 2rem; padding: 2rem;
+            border-left: 4px solid var(--color-red); 
+            border-radius: 0 20px 20px 0;
+        }
+        .cert-card:hover { transform: translateX(15px); border-left-color: var(--color-blue); }
+        .cert-icon {
+            width: 70px; height: 70px; background: rgba(255,255,255,0.08); border-radius: 16px;
+            display: flex; align-items: center; justify-content: center; 
+            border: 1px solid rgba(255,255,255,0.15); border-top: 1px solid rgba(255,255,255,0.4);
+            font-family: var(--font-heading); font-weight: 900; font-size: 1.8rem; color: var(--color-white);
+            box-shadow: inset 0 2px 10px rgba(255,255,255,0.15), 0 10px 20px rgba(0,0,0,0.6);
+            backdrop-filter: blur(20px); transition: var(--transition-fast);
+        }
+        .cert-card:hover .cert-icon { border-color: var(--color-blue); color: var(--color-blue); text-shadow: var(--glow-blue); background: rgba(0,68,255,0.15); }
+
+        /* ==========================================================================
+            RESULTS & SOCIAL GROWTH
+            ========================================================================== */
+        .stats-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin: 5rem 0; }
+        .stat-box { text-align: center; padding: 4rem 2rem; }
+        .stat-box::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at top, rgba(255,0,51,0.2), transparent 70%); pointer-events: none; }
+        .stat-box:nth-child(2):before { background: radial-gradient(circle at top, rgba(0,68,255,0.2), transparent 70%); }
+        .stat-number { font-family: var(--font-heading); font-size: clamp(3.5rem, 6vw, 5.5rem); font-weight: 900; color: var(--color-white); text-shadow: var(--glow-red); margin-bottom: 1rem; line-height: 1; }
+        .stat-box:nth-child(2) .stat-number { text-shadow: var(--glow-blue); }
+        .stat-label { font-family: var(--font-mono); font-size: 1.1rem; color: var(--color-white); letter-spacing: 3px; font-weight: 700; }
+        .stat-desc { font-size: 1rem; color: var(--color-muted); margin-top: 1rem; text-transform: uppercase; }
+
+        .growth-flow {
+            display: flex; flex-direction: column; gap: 1.5rem; max-width: 700px; margin: 0 auto;
+            border-left: 2px dashed rgba(255,0,51,0.4); padding-left: 3.5rem; position: relative;
+        }
+        .growth-step {
+            padding: 1.8rem 2.5rem; border-radius: 16px;
+        }
+        .growth-step::before {
+            content: ''; position: absolute; left: -4rem; top: 50%; transform: translateY(-50%);
+            width: 20px; height: 20px; border-radius: 50%; background: var(--bg-deep); border: 3px solid rgba(255,255,255,0.3); transition: var(--transition-fast);
+        }
+        .growth-step:hover { transform: translateX(20px); border-color: rgba(255,0,51,0.4); }
+        .growth-step:hover::before { border-color: var(--color-red); box-shadow: var(--glow-red); background: var(--color-red); }
+        .growth-step h5 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .growth-step:last-child { border-color: var(--color-blue); box-shadow: inset 0 0 35px rgba(0,68,255,0.25), 0 10px 30px rgba(0,0,0,0.6); background: rgba(0,68,255,0.15); }
+        .growth-step:last-child::before { border-color: var(--color-blue); box-shadow: var(--glow-blue); background: var(--color-blue); }
+
+        /* ==========================================================================
+            PROCESS TIMELINE
+            ========================================================================== */
+        .process-timeline { max-width: 900px; margin: 0 auto; position: relative; padding-left: 5rem; }
+        .process-timeline::before { content: ''; position: absolute; left: 0; top: 0; width: 2px; height: 100%; background: rgba(255,255,255,0.15); }
+        .process-timeline::after {
+            content: ''; position: absolute; left: 0; top: 0; width: 2px; height: 100%;
+            background: linear-gradient(to bottom, transparent, var(--color-red), var(--color-blue), transparent);
+            background-size: 100% 200%; animation: circuitFlow 5s linear infinite; box-shadow: var(--glow-mixed);
+        }
+        .process-step { margin-bottom: 4rem; padding: 2.5rem; }
+        .process-step::before {
+            content: attr(data-step); position: absolute; left: -7.5rem; top: 50%; transform: translateY(-50%);
+            width: 5rem; height: 5rem; background: rgba(10,10,15,0.9); border: 2px solid rgba(255,255,255,0.4);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-heading); font-weight: 900; font-size: 1.4rem; color: var(--color-white);
+            box-shadow: inset 0 5px 10px rgba(255,255,255,0.15), 0 10px 20px rgba(0,0,0,0.6); z-index: 2; transition: var(--transition-fast); backdrop-filter: blur(20px);
+        }
+        .process-step:hover::before { border-color: var(--color-blue); color: var(--color-blue); box-shadow: var(--glow-blue); transform: translateY(-50%) scale(1.1); background: rgba(0,68,255,0.15); }
+        .process-step h3 { margin-bottom: 1rem; font-size: 1.8rem; letter-spacing: 2px; }
+        .process-step p { color: var(--color-muted); font-size: 1.1rem; }
+
+        /* ==========================================================================
+            TECH STACK VISUAL
+            ========================================================================== */
+        .tech-constellation { display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem; padding: 5rem 0; position: relative; z-index: 2; }
+        .tech-node {
+            padding: 1.2rem 3rem; background: rgba(20, 20, 30, 0.3); border: 1px solid rgba(255,255,255,0.15); border-top: 1px solid rgba(255,255,255,0.4);
+            border-radius: 40px; font-family: var(--font-mono); font-size: 1.1rem; color: var(--color-white);
+            animation: floatComplex 8s ease-in-out infinite; cursor: default; transition: var(--transition-slow);
+            backdrop-filter: blur(35px); box-shadow: inset 0 2px 10px rgba(255,255,255,0.1), 0 10px 25px rgba(0,0,0,0.6);
+        }
+        .tech-node:hover { border-color: var(--color-red); box-shadow: var(--glow-red); transform: scale(1.15) !important; z-index: 10; background: rgba(255,0,51,0.25); }
+        .tech-node:nth-child(even):hover { border-color: var(--color-blue); box-shadow: var(--glow-blue); background: rgba(0,68,255,0.25); }
+        .tech-node:nth-child(even) { animation-delay: 1.5s; border-color: rgba(0,68,255,0.2); }
+        .tech-node:nth-child(3n) { animation-delay: 3s; border-color: rgba(255,0,51,0.2); }
+
+        /* ==========================================================================
+            ABOUT & CTA SECTION
+            ========================================================================== */
+        .statement-section { text-align: center; max-width: 1000px; margin: 0 auto; padding: 8rem 0; position: relative; z-index: 2; border-color: rgba(0,68,255,0.4); border-radius: 30px; }
+        .statement-section h2 { font-size: clamp(2.5rem, 4vw, 4rem); line-height: 1.2; margin-bottom: 2.5rem; color: var(--color-white); text-shadow: 0 0 30px rgba(255,255,255,0.2); }
+        .statement-section p { font-size: 1.3rem; color: var(--color-muted); font-family: var(--font-mono); }
+
+        .cta-section {
+            position: relative; text-align: center; padding: 10rem 2rem; margin-top: 5rem;
+            background: linear-gradient(180deg, transparent, rgba(255, 0, 51, 0.08) 50%, transparent);
+            border-top: 1px solid rgba(255, 0, 51, 0.2); border-bottom: 1px solid rgba(0, 68, 255, 0.2);
+            overflow: hidden;
+        }
+        .cta-bg {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 100vw; height: 100%; background: radial-gradient(circle, rgba(0,68,255,0.15) 0%, transparent 70%);
+            z-index: 0; pointer-events: none; animation: pulseLight 8s infinite alternate;
+        }
+        .cta-content { position: relative; z-index: 1; }
+        .cta-content h2 { font-size: clamp(3.5rem, 7vw, 6rem); margin-bottom: 1.5rem; text-shadow: 0 10px 20px rgba(0,0,0,0.8); }
+        .cta-content p { font-size: 1.4rem; margin-bottom: 4rem; color: var(--color-muted); font-family: var(--font-mono); }
+        .cta-buttons { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; }
+
+        /* ==========================================================================
+            CONTACT & FORMS (EXTREME GLASS)
+            ========================================================================== */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 2rem; position: relative; z-index: 2; }
+        .contact-info { display: flex; flex-direction: column; gap: 2.5rem; }
+        .contact-card { padding: 2.5rem; border-left: 4px solid var(--color-blue); }
+        .contact-card h4 { color: var(--color-muted); font-size: 1rem; margin-bottom: 0.8rem; letter-spacing: 2px; }
+        .contact-card a, .contact-card p { color: var(--color-white); font-size: 1.4rem; text-decoration: none; font-family: var(--font-mono); transition: var(--transition-fast); }
+        .contact-card a:hover { color: var(--color-red); text-shadow: var(--glow-red); }
+        
+        .form-group { margin-bottom: 2rem; position: relative; }
+        .form-control {
+            width: 100%; background: rgba(5,5,10,0.5); border: 1px solid rgba(255,255,255,0.15); border-top: 1px solid rgba(255,255,255,0.3);
+            padding: 1.5rem; color: var(--color-white); font-family: var(--font-mono); font-size: 1.1rem;
+            outline: none; transition: var(--transition-fast); border-radius: 12px;
+            backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.8);
+        }
+        .form-control:focus { border-color: var(--color-red); background: rgba(10,10,15,0.7); box-shadow: inset 0 2px 10px rgba(0,0,0,0.8), 0 0 25px rgba(255,0,51,0.3); transform: translateY(-2px); }
+        .form-control::placeholder { color: rgba(255,255,255,0.4); }
+        textarea.form-control { resize: vertical; min-height: 150px; }
+
+        footer { border-top: 1px solid rgba(255,255,255,0.1); padding: 5rem 0 2rem; margin-top: 8rem; background: rgba(2,2,3,0.85); position: relative; z-index: 10; backdrop-filter: blur(50px); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 5rem; }
+        .footer-logo { margin-bottom: 1.5rem; }
+        .footer-links h5 { color: var(--color-white); margin-bottom: 2rem; font-size: 1.1rem; letter-spacing: 2px; }
+        .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+        .footer-links a { color: var(--color-muted); text-decoration: none; transition: var(--transition-fast); font-family: var(--font-mono); }
+        .footer-links a:hover { color: var(--color-blue); padding-left: 8px; text-shadow: var(--glow-blue); }
+        .footer-bottom { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2.5rem; color: var(--color-muted); font-size: 0.95rem; font-family: var(--font-mono); line-height: 2; }
+        .footer-credit { color: var(--color-red); text-shadow: 0 0 10px rgba(255,0,51,0.5); font-weight: 700; letter-spacing: 2px; display: block; margin-top: 0.5rem; }
+
+        /* ==========================================================================
+            RESPONSIVE DESIGN
+            ========================================================================== */
+        @media (max-width: 1024px) {
+            .founder-wrapper { grid-template-columns: 1fr; }
+            .stats-container { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+            .hero-graphic { opacity: 0.2; right: -20%; }
+            .pricing-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        }
+        @media (max-width: 850px) {
+            header { width: 95%; padding: 0.5rem 1rem; }
+            .nav-menu { display: none; }
+            .notch-cta { display: none; }
+            .mobile-toggle-btn { display: block; }
+            
+            /* Mobile Dropdown inside the Notch */
+            .mobile-menu-container {
+                position: absolute; top: 110%; left: 0; width: 100%;
+                background: linear-gradient(135deg, rgba(20, 20, 25, 0.95), rgba(5, 5, 10, 0.98));
+                backdrop-filter: blur(50px); border: 1px solid rgba(255,255,255,0.15); border-top: 1px solid rgba(255,255,255,0.4);
+                border-radius: 20px; padding: 2rem; display: flex; flex-direction: column; gap: 1rem;
+                opacity: 0; pointer-events: none; transform: translateY(-20px); transition: var(--transition-fast);
+                box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+            }
+            #mobile-menu-checkbox:checked ~ .mobile-menu-container { opacity: 1; pointer-events: all; transform: translateY(0); }
+            .mobile-menu-container a { color: var(--color-white); font-family: var(--font-mono); text-decoration: none; font-size: 1.2rem; padding: 1rem; text-align: center; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); }
+            .mobile-menu-container a:hover { background: rgba(0,68,255,0.25); border-color: var(--color-blue); }
+
+            .hero-ctas { flex-direction: column; align-items: stretch; }
+            .pipeline-track { flex-direction: column; gap: 4rem; padding: 4rem 2rem; }
+            .pipeline-track::before, .pipeline-track::after { width: 2px; height: 90%; left: 50%; top: 5%; transform: translateX(-50%); }
+            .pipeline-track::after { background: linear-gradient(to bottom, transparent, var(--color-red), var(--color-blue), transparent); }
+            
+            .contact-grid, .footer-grid { grid-template-columns: 1fr; }
+            .process-timeline { padding-left: 2rem; }
+            .process-step::before { left: -3.5rem; width: 3rem; height: 3rem; font-size: 1rem; }
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="fixed-bg"></div>
+    <div class="moire-grid"></div>
+    <div class="perspective-grid"></div>
+    <div class="ambient-light light-red"></div>
+    <div class="ambient-light light-blue"></div>
+    
+    <div class="floating-element fe-1"></div>
+    <div class="floating-element fe-2"></div>
+
+    <!-- THE GLASS NOTCH NAVIGATION -->
+    <header>
+        <a href="#" class="logo">
+            <img src="na.jpeg" alt="Neural Automation Logo">
+            <span>NEURAL <small>AUTOMATION</small></span>
+        </a>
+        
+        <ul class="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#results">Results</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+
+        <a href="#contact" class="notch-cta">START PROJECT</a>
+
+        <!-- Mobile Menu Toggle -->
+        <input type="checkbox" id="mobile-menu-checkbox" style="display: none;">
+        <label for="mobile-menu-checkbox" class="mobile-toggle-btn">☰</label>
+        
+        <div class="mobile-menu-container">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#process">Process</a>
+            <a href="#results">Results</a>
+            <a href="#about">About</a>
+            <a href="#contact" style="background: rgba(255,0,51,0.25); border-color: var(--color-red);">Start Project</a>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content magical-reveal">
+                <div class="mono-label">System Online</div>
+                <h1>BUILD. <span class="text-red">AUTOMATE.</span> GROW.</h1>
+                <p>Neural Automation builds intelligent digital experiences, AI-powered solutions and growth systems designed to help businesses move faster, operate smarter and grow organically.</p>
+                <div class="hero-ctas">
+                    <a href="#contact" class="btn btn-primary">Start Your Project →</a>
+                    <a href="#services" class="btn btn-secondary">Explore Our Capabilities ↓</a>
+                </div>
+                <div class="credibility-strip magical-reveal delay-1">
+                    <span>Websites</span>
+                    <span>Apps</span>
+                    <span>AI/ML</span>
+                    <span>Data</span>
+                    <span>Automation</span>
+                    <span>Social Growth</span>
+                </div>
+            </div>
+            
+            <div class="hero-graphic magical-reveal delay-2">
+                <div class="cyber-core">
+                    <div class="ring ring-1"></div>
+                    <div class="ring ring-2"></div>
+                    <div class="ring ring-3"></div>
+                    <div class="core-node"></div>
+                    <div class="ring-1" style="position: absolute; border:none; top:50%; left:50%; transform:translate(-50%,-50%); width:300px; height:300px; animation: spin 10s linear infinite;">
+                        <div class="orbit-node"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section-padding container">
+        <div class="section-header magical-reveal">
+            <div class="mono-label">Capabilities</div>
+            <h2><span class="text-gradient">DIGITAL SYSTEMS.</span> ENGINEERED FOR GROWTH.</h2>
+        </div>
+        
+        <div class="capabilities-grid">
+            <div class="glass-panel cap-card magical-reveal delay-1">
+                <div class="cap-num">01</div>
+                <h3>WEB</h3>
+                <p>High-performance websites and modern digital experiences for companies, brands and businesses.</p>
+            </div>
+            <div class="glass-panel cap-card magical-reveal delay-2">
+                <div class="cap-num">02</div>
+                <h3>APPS</h3>
+                <p>Modern web applications and business applications designed around real-world workflows.</p>
+            </div>
+            <div class="glass-panel cap-card magical-reveal delay-3">
+                <div class="cap-num">03</div>
+                <h3>AI / ML</h3>
+                <p>AI and machine-learning solutions, intelligent systems and custom models tailored for precision.</p>
+            </div>
+            <div class="glass-panel cap-card magical-reveal delay-1">
+                <div class="cap-num">04</div>
+                <h3>DATA SCIENCE</h3>
+                <p>Data-driven solutions, deep analysis, and advanced project development mapping operational truths.</p>
+            </div>
+            <div class="glass-panel cap-card magical-reveal delay-2">
+                <div class="cap-num">05</div>
+                <h3>AUTOMATION</h3>
+                <p>Intelligent workflow automation designed to reduce repetitive work and improve operational efficiency.</p>
+            </div>
+            <div class="glass-panel cap-card magical-reveal delay-3">
+                <div class="cap-num">06</div>
+                <h3>DIGITAL MARKETING / SOCIAL MEDIA MARKETING</h3>
+                <p>Social media marketing, content strategy, organic growth, and maximizing digital visibility.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW PRICING & PACKAGES SECTION -->
+    <section id="pricing" class="section-padding container">
+        <div class="section-header magical-reveal">
+            <div class="mono-label">Investment</div>
+            <h2>SCALABLE <span class="text-gradient">PACKAGES</span></h2>
+            <p style="color: var(--color-muted); max-width: 800px; margin: 1.5rem auto; font-size: 1.2rem;">
+                Flexible, high-performance plans scaling from $50 / ₹5,000 INR up to thousands of dollars for large industrial enterprises requiring advanced engineering and heavy system architectures.
+            </p>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- Digital Marketing -->
+            <div class="glass-panel pricing-card pricing-card-blue magical-reveal delay-1">
+                <h3 class="pricing-title text-blue">Digital Marketing</h3>
+                <div class="pricing-target">Tailored for Small to Medium Businesses</div>
+                <div class="pricing-price">$50<br><small>₹5,000 INR / onwards</small></div>
+                <ul class="pricing-features">
+                    <li>Social Media Growth & Management</li>
+                    <li>Organic Content Strategy</li>
+                    <li>Brand Visibility Scaling</li>
+                    <li>Analytics & Progress Reports</li>
+                    <li>Scales to large campaign needs</li>
+                </ul>
+                <a href="#contact" class="btn btn-secondary">BUY NOW →</a>
+            </div>
+
+            <!-- Website Development -->
+            <div class="glass-panel pricing-card pricing-card-red magical-reveal delay-2">
+                <h3 class="pricing-title text-red">Website Development</h3>
+                <div class="pricing-target">Perfect for Brands & Startups</div>
+                <div class="pricing-price">$50<br><small>₹5,000 INR / onwards</small></div>
+                <ul class="pricing-features">
+                    <li>Custom UI / UX Design</li>
+                    <li>Responsive & Mobile Ready</li>
+                    <li>Lightning Fast Performance</li>
+                    <li>SEO Foundation Included</li>
+                    <li>Scales to robust enterprise web apps</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary">BUY NOW →</a>
+            </div>
+
+            <!-- App Development -->
+            <div class="glass-panel pricing-card pricing-card-blue magical-reveal delay-3">
+                <h3 class="pricing-title text-blue">App Development</h3>
+                <div class="pricing-target">Designed for Growing Tech Companies</div>
+                <div class="pricing-price">$100<br><small>₹10,000 INR / onwards</small></div>
+                <ul class="pricing-features">
+                    <li>iOS & Android Compatibility</li>
+                    <li>Custom Database Architecture</li>
+                    <li>API Integrations</li>
+                    <li>Secure Authentication</li>
+                    <li>Scalable to large user bases</li>
+                </ul>
+                <a href="#contact" class="btn btn-secondary">BUY NOW →</a>
+            </div>
+
+            <!-- Heavy Enterprise & Industrial -->
+            <div class="glass-panel pricing-card pricing-card-red magical-reveal delay-4">
+                <h3 class="pricing-title text-red">Enterprise & Industry</h3>
+                <div class="pricing-target">Heavy Requirements & Advanced Engg.</div>
+                <div class="pricing-price" style="font-size: 2.8rem;">$1,000+<br><small>Thousands of Dollars / Custom</small></div>
+                <ul class="pricing-features">
+                    <li>Large Scale Industrial Automation</li>
+                    <li>Advanced AI/ML Engineering</li>
+                    <li>Heavy Infrastructure & Architecture</li>
+                    <li>End-to-end Enterprise Solutions</li>
+                    <li>Dedicated Technical Leadership</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary">BUY NOW →</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us" class="section-padding container">
+        <div class="section-header magical-reveal">
+            <div class="mono-label">Integration</div>
+            <h2>TECHNOLOGY MEETS GROWTH.</h2>
+            <p style="max-width: 600px; margin: 1.5rem auto; color: var(--color-muted); font-size: 1.2rem;">We combine technical development and digital marketing instead of treating them as separate services.</p>
+        </div>
+        
+        <div class="pipeline-container magical-reveal delay-1">
+            <div class="pipeline-track">
+                <div class="stage">
+                    <div class="stage-icon"><span>I</span></div>
+                    <h4>IDEA</h4>
+                    <p>Conceptualizing digital solutions aligned with business metrics.</p>
+                </div>
+                <div class="stage">
+                    <div class="stage-icon"><span>B</span></div>
+                    <h4>BUILD</h4>
+                    <p>Websites, applications, AI/ML systems and data projects.</p>
+                </div>
+                <div class="stage">
+                    <div class="stage-icon"><span>A</span></div>
+                    <h4>AUTOMATE</h4>
+                    <p>AI automation and intelligent workflows for operations.</p>
+                </div>
+                <div class="stage">
+                    <div class="stage-icon"><span>G</span></div>
+                    <h4>GROW</h4>
+                    <p>Digital marketing, social strategy, and organic content systems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="founder" class="section-padding container">
+        <div class="mono-label magical-reveal" style="margin-bottom: 2rem;">Leadership</div>
+        <div class="founder-wrapper">
+            <div class="founder-info magical-reveal delay-1">
+                <h2>THE ENGINE BEHIND NEURAL AUTOMATION</h2>
+                <h3 class="text-white">Raghav Rastogi</h3>
+                <p>Raghav Rastogi is the founder of Neural Automation, focused on building websites, digital systems and growth strategies for companies and businesses.</p>
+                <p>He is certified by Google in Digital Marketing and E-commerce.</p>
+                <p>He completed AI/ML certification training from CETPA Institute.</p>
+                <p>He has also learned Agentic AI and Project Management through Vishleshan Hub, IIT Patna, and holds certification for that course.</p>
+                <p>His practical focus is on combining technology with digital growth — building websites and digital experiences while helping businesses achieve stronger organic visibility through social media and content strategy.</p>
+            </div>
+            <div class="cert-grid">
+                <div class="glass-panel cert-card magical-reveal delay-2">
+                    <div class="cert-icon">G</div>
+                    <div>
+                        <div class="mono-label" style="font-size: 0.65rem; background: rgba(0,0,0,0.5);">Certified</div>
+                        <h4 style="margin-top: 8px;">GOOGLE</h4>
+                        <p style="color: var(--color-muted); font-size: 0.95rem; margin:0;">Digital Marketing & E-commerce</p>
+                    </div>
+                </div>
+                <div class="glass-panel cert-card magical-reveal delay-3">
+                    <div class="cert-icon">C</div>
+                    <div>
+                        <div class="mono-label" style="font-size: 0.65rem; background: rgba(0,0,0,0.5);">Certified</div>
+                        <h4 style="margin-top: 8px;">CETPA INSTITUTE</h4>
+                        <p style="color: var(--color-muted); font-size: 0.95rem; margin:0;">AI / ML Certification Training</p>
+                    </div>
+                </div>
+                <div class="glass-panel cert-card magical-reveal delay-4">
+                    <div class="cert-icon">I</div>
+                    <div>
+                        <div class="mono-label" style="font-size: 0.65rem; background: rgba(0,0,0,0.5);">Certified</div>
+                        <h4 style="margin-top: 8px;">IIT PATNA — VISHLESHAN HUB</h4>
+                        <p style="color: var(--color-muted); font-size: 0.95rem; margin:0;">Agentic AI & Project Management</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="results" class="section-padding container">
+        <div class="section-header magical-reveal">
+            <div class="mono-label">Proof of Concept</div>
+            <h2>RESULTS THAT SPEAK LOUDER.</h2>
+            <p style="color: var(--color-white); margin-top: 1.5rem; font-size: 1.2rem;">Hands-on experience in social media growth, viral-content strategy and building organic digital visibility.</p>
+        </div>
+        
+        <div class="stats-container">
+            <div class="glass-panel stat-box magical-reveal delay-1">
+                <div class="stat-number">150+</div>
+                <div class="stat-label">FOLLOWERS</div>
+                <div class="stat-desc">From 0 in under 2 months</div>
+            </div>
+            <div class="glass-panel stat-box magical-reveal delay-2">
+                <div class="stat-number text-gradient">3.5L+</div>
+                <div class="stat-label">TOTAL VIEWS</div>
+                <div class="stat-desc">Generated on dashboard</div>
+            </div>
+            <div class="glass-panel stat-box magical-reveal delay-3">
+                <div class="stat-number">105K+</div>
+                <div class="stat-label">VIEWS</div>
+                <div class="stat-desc">On one viral video</div>
+            </div>
+        </div>
+
+        <div class="section-header magical-reveal" style="margin-top: 8rem; margin-bottom: 3rem;">
+            <h2>FROM ZERO TO SIGNAL.</h2>
+        </div>
+        <div class="growth-flow">
+            <div class="glass-panel growth-step magical-reveal delay-1"><h5>0 FOLLOWERS</h5><p class="mono-label">Baseline</p></div>
+            <div class="glass-panel growth-step magical-reveal delay-2"><h5>CONTENT SYSTEM</h5><p class="mono-label">Strategy deployed</p></div>
+            <div class="glass-panel growth-step magical-reveal delay-3"><h5>CONSISTENCY</h5><p class="mono-label">Algorithmic training</p></div>
+            <div class="glass-panel growth-step magical-reveal delay-4"><h5>ORGANIC DISTRIBUTION</h5><p class="mono-label">Network effect</p></div>
+            <div class="glass-panel growth-step magical-reveal delay-1" style="margin-top:1rem;"><h5>150+ FOLLOWERS UNDER 60 DAYS</h5><p class="mono-label" style="background: var(--color-blue); border-color: var(--color-blue);">Scale achieved</p></div>
+        </div>
+    </section>
+
+    <section id="process" class="section-padding container">
+        <div class="section-header magical-reveal">
+            <div class="mono-label">Methodology</div>
+            <h2>FROM CONCEPT TO DIGITAL SYSTEM.</h2>
+        </div>
+        
+        <div class="process-timeline">
+            <div class="glass-panel process-step magical-reveal delay-1" data-step="01">
+                <h3>DISCOVER</h3>
+                <p>Understand the business, audience and core operational objectives.</p>
+            </div>
+            <div class="glass-panel process-step magical-reveal delay-2" data-step="02">
+                <h3>STRATEGIZE</h3>
+                <p>Develop the right technical architecture and targeted growth strategy.</p>
+            </div>
+            <div class="glass-panel process-step magical-reveal delay-3" data-step="03">
+                <h3>BUILD</h3>
+                <p>Design and develop the functional digital product or automated system.</p>
+            </div>
+            <div class="glass-panel process-step magical-reveal delay-4" data-step="04">
+                <h3>OPTIMIZE</h3>
+                <p>Test rigorously, refine code logic, and improve performance metrics.</p>
+            </div>
+            <div class="glass-panel process-step magical-reveal delay-1" data-step="05">
+                <h3>GROW</h3>
+                <p>Scale visibility, enhance automation deployment, and maximize digital impact.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding container">
+        <div class="section-header magical-reveal">
+            <h2>BUILT FOR THE MODERN WEB</h2>
+        </div>
+        <div class="tech-constellation">
+            <div class="tech-node magical-reveal delay-1">WEB</div>
+            <div class="tech-node magical-reveal delay-2">AI</div>
+            <div class="tech-node magical-reveal delay-3">APPS</div>
+            <div class="tech-node magical-reveal delay-4">DATA</div>
+            <div class="tech-node magical-reveal delay-1">ML</div>
+            <div class="tech-node magical-reveal delay-2">AUTOMATION</div>
+            <div class="tech-node magical-reveal delay-3">DIGITAL MARKETING / SOCIAL MEDIA MARKETING</div>
+            <div class="tech-node magical-reveal delay-4">SOCIAL</div>
+        </div>
+    </section>
+
+    <section id="about" class="container">
+        <div class="statement-section glass-panel magical-reveal" style="padding: 5rem; border-radius: 24px;">
+            <h2>WE DON'T JUST BUILD DIGITAL PRODUCTS.<br><span class="text-blue">WE BUILD SYSTEMS THAT MOVE BUSINESSES FORWARD.</span></h2>
+            <p>Neural Automation combines web development, applications, AI/ML, automation and digital marketing into one technology-driven ecosystem. The goal is simple: create better digital experiences and help businesses grow faster.</p>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-bg"></div>
+        <div class="container cta-content magical-reveal">
+            <h2>READY TO BUILD <span class="text-gradient">WHAT'S NEXT?</span></h2>
+            <p>Tell us what you want to build, automate or grow.</p>
+            <div class="cta-buttons">
+                <a href="#pricing" class="btn btn-primary">VIEW PACKAGES →</a>
+                <a href="#contact" class="btn btn-secondary">CONTACT NEURAL AUTOMATION</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding container">
+        <div class="section-header magical-reveal" style="text-align: left;">
+            <div class="mono-label">Communication Node</div>
+            <h2>CONTACT DETAILS:-</h2>
+        </div>
+        
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="glass-panel contact-card magical-reveal delay-1">
+                    <h4>FOUNDER</h4>
+                    <p>Raghav Rastogi</p>
+                </div>
+                <div class="glass-panel contact-card magical-reveal delay-2" style="border-left-color: var(--color-red);">
+                    <h4>WHATSAPP MOBILE NO.</h4>
+                    <a href="tel:+917042145705">+91 7042145705</a>
+                </div>
+                <div class="glass-panel contact-card magical-reveal delay-3">
+                    <h4>GMAIL:-</h4>
+                    <a href="mailto:Neural.automation.2009@gmail.com" style="word-break: break-all;">Neural.automation.2009@gmail.com</a>
+                </div>
+            </div>
+            
+            <div class="glass-panel magical-reveal delay-2" style="padding: 3.5rem;">
+                <!-- SYSTEM NOTICE / WARNING ABOUT ENQUIRIES NOT WORKING -->
+                <div style="background: rgba(255,0,51,0.1); border: 1px solid rgba(255,0,51,0.4); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; text-align: center; backdrop-filter: blur(10px);">
+                    <h4 style="color: var(--color-red); margin-bottom: 0.5rem; font-size: 1.1rem;">⚠️ IMPORTANT NOTE</h4>
+                    <p style="font-family: var(--font-mono); font-size: 0.9rem; color: #fff; line-height: 1.5;">
+                        Enquiries through this form are currently not working due to a system upgrade. 
+                        <strong>Please contact me directly through the details provided (WhatsApp or Gmail).</strong> 
+                        Sorry for the inconvenience and thanks for your cooperation!
+                    </p>
+                </div>
+
+                <h3 style="margin-bottom: 2.5rem; color: var(--color-white); letter-spacing: 2px;">TRANSMIT REQUIREMENTS</h3>
+                <form action="#" method="POST" id="contact-form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Name" required disabled style="opacity: 0.6;">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email" required disabled style="opacity: 0.6;">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Company / Business" disabled style="opacity: 0.6;">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Service Required (Web, AI, Growth...)" disabled style="opacity: 0.6;">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Project Details" required disabled style="opacity: 0.6;"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary" style="width: 100%; padding: 1.5rem; border-radius: 12px; filter: grayscale(1); cursor: not-allowed;" onclick="alert('Form is currently disabled. Please contact directly via WhatsApp or Email. Thank you!')">SYSTEM OFFLINE</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="magical-reveal delay-1">
+                    <a href="#" class="logo footer-logo">
+                        <img src="na.jpeg" alt="Neural Automation Logo" style="width: 80px; height: 80px;">
+                        <span>NEURAL <small>AUTOMATION</small></span>
+                    </a>
+                    <p class="mono-label" style="margin-bottom: 2rem; background: transparent; border: none; padding: 0; box-shadow: none; backdrop-filter: none;">AI • AUTOMATION • DIGITAL GROWTH</p>
+                </div>
+                <div class="footer-links magical-reveal delay-2">
+                    <h5>PLATFORMS</h5>
+                    <ul>
+                        <li><a href="#" target="_blank">Instagram — Raghav Rastogi / Neural Automation</a></li>
+                        <li><a href="#" target="_blank">Facebook — Raghav Rastogi / Neural Automation</a></li>
+                        <li><a href="#" target="_blank">YouTube — Raghav Rastogi / Neural Automation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links magical-reveal delay-3">
+                    <h5>INDEX</h5>
+                    <ul>
+                        <li><a href="#home">Home / Core</a></li>
+                        <li><a href="#services">Capabilities</a></li>
+                        <li><a href="#pricing">Packages & Pricing</a></li>
+                        <li><a href="#results">Results</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom magical-reveal">
+                &copy; 2026 Neural Automation. All rights reserved. | Built for the future.
+                <span class="footer-credit">CREDIT TO DEEKSHA MOHAN RASTOGI</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ----------------------------------------------------------------------
+        // MAGICAL SCROLL REVEAL (Intersection Observer)
+        // ----------------------------------------------------------------------
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // Triggers when 15% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add the visible class to trigger the smooth CSS transition
+                        entry.target.classList.add('visible');
+                    } else {
+                        // Elements hide again when scrolling up for a repeating magical effect
+                        entry.target.classList.remove('visible'); 
+                    }
+                });
+            }, observerOptions);
+
+            const revealElements = document.querySelectorAll('.magical-reveal');
+            revealElements.forEach((el) => {
+                observer.observe(el);
+            });
+        });
+
+        // ----------------------------------------------------------------------
+        // FORM SUBMISSION LOGIC (DISABLED AS REQUESTED)
+        // ----------------------------------------------------------------------
+        document.querySelector('#contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Form submissions are currently unavailable. Please contact via WhatsApp (+91 7042145705) or Email. Thank you!');
+        });
+    </script>
+</body>
+</html>
